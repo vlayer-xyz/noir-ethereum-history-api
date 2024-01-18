@@ -4,7 +4,12 @@ import { generateAndVerifyStorageProof, type MainInputs } from '../src/main.js';
 import { encodeAddress } from '../src/noir/encode.js';
 import { createOracles, type Oracles } from '../src/noir/oracles/oracles.js';
 import accountWithProofJSON from './fixtures/accountWithProof.json';
-import { AccountWithProof, expectCircuitFail, type FieldsOfType, serializeAccountWithProof } from './helpers.js';
+import {
+  AccountWithProof,
+  expectCircuitAssertionFail,
+  type FieldsOfType,
+  serializeAccountWithProof
+} from './helpers.js';
 import { blockHeaders } from './fixtures/blockHeader.json';
 import { encodeBlockHeaderPartial } from '../src/noir/oracles/headerOracle.js';
 import { type BlockHeader } from '../src/ethereum/blockHeader.js';
@@ -66,7 +71,7 @@ describe(
     const arrayKeys: Array<FieldsOfType<AccountWithProof, readonly string[]>> = ['key', 'value', 'proof'];
     arrayKeys.forEach((arrayField) => {
       it(`proof fails: invalid field: ${arrayField}`, async () => {
-        await expectCircuitFail(
+        await expectCircuitAssertionFail(
           generateAndVerifyStorageProof(
             defaultTestCircuitInputParams,
             oracles({
@@ -83,7 +88,7 @@ describe(
         ...defaultTestCircuitInputParams,
         state_root: alterArray(defaultTestCircuitInputParams.state_root)
       };
-      await expectCircuitFail(generateAndVerifyStorageProof(inputParams, oracles()));
+      await expectCircuitAssertionFail(generateAndVerifyStorageProof(inputParams, oracles()));
     });
   },
   {

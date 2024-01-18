@@ -1,10 +1,8 @@
 import { expect } from 'vitest';
 import { ForeignCallOutput } from '@noir-lang/noir_js';
 
-export async function expectCircuitFail(p: Promise<boolean>): Promise<void> {
-  await expect(p).rejects.toThrow(
-    'Circuit execution failed: Error: Failed to solve brillig function, reason: explicit trap hit in brillig'
-  );
+export async function expectCircuitAssertionFail(p: Promise<boolean>): Promise<void> {
+  await expect(p).rejects.toThrow('Circuit execution failed: Error: Cannot satisfy constraint');
 }
 
 export function clone<T>(obj: T): T {
