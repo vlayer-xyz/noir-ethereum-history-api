@@ -1,8 +1,8 @@
 {
   "name": "noir-ethereum-api-oracles",
   "version": "1.0.0",
-  "main": "dist/oracles/src/main.js",
-  "types": "dist/oracles/src/main.d.ts",
+  "main": "dist/src/main.js",
+  "types": "dist/src/main.d.ts",
   "type": "module",
   "scripts": {
     "test:unit": "vitest run --config vitest.unit.config.ts",

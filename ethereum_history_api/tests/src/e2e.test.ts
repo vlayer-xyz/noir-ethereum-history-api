@@ -45,7 +45,7 @@ describe(
       expect(deploymentTxReceipt.status).toEqual('success');
 
       assert(!!deploymentTxReceipt.contractAddress, 'Deployed contract address should not be empty');
-      return deploymentTxReceipt.contractAddress;
+      return deploymentTxReceipt.contractAddress!;
     }
 
     it('smart contract proof verification successes', async () => {

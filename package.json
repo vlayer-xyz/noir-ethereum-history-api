@@ -5,6 +5,8 @@
     "ethereum_history_api/tests"
   ],
   "scripts": {
+    "build": "tsc --build tsconfig.json",
+    "watch": "tsc --build --watch tsconfig.json",
     "check": "yarn format:all && yarn lint:all && yarn typecheck:all",
     "lint:all": "yarn workspaces foreach --all --parallel --verbose run lint",
     "typecheck:all": "yarn workspaces foreach --all --parallel --verbose run typecheck",

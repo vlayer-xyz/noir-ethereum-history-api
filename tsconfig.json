@@ -12,6 +12,13 @@
     "declaration": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "composite": true,
+    "incremental": true
+  },
+  "files": [],
+  "references": [
+    { "path": "./ethereum_history_api/oracles/tsconfig.json" },
+    { "path": "./ethereum_history_api/tests/tsconfig.json" }
+  ]
 }
