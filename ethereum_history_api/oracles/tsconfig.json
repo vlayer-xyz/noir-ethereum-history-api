@@ -1,8 +1,0 @@
-{
-  "extends": "../../tsconfig.common.json",
-  "include": ["src/**/*", "fixtures/*.json", "package.json"],
-  "compilerOptions": {
-    "rootDirs": ["src"],
-    "outDir": "dist"
-  }
-}

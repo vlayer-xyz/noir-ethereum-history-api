@@ -1,10 +1,5 @@
 {
   "recommendations": [
-    "arcanis.vscode-zipfs", // This extension allows VS Code to read from and write to zip archives as if they were regular directories. It's particularly useful in Yarn 2 projects that make use of Zip archives for package management.
     "noir-lang.vscode-noir", // This extension provides support for the Noir language, a domain-specific language for zero-knowledge proofs. It likely offers features like syntax highlighting, code formatting, and possibly IntelliSense features for Noir.
-    "JuanBlanco.solidity", // A Solidity language support extension for VS Code. It offers features like syntax highlighting, code snippets, and compilation for Solidity, the language used for writing smart contracts on Ethereum and other blockchain platforms.
-    "dbaeumer.vscode-eslint", // Integrates ESLint into VS Code. ESLint is a popular linter for JavaScript and TypeScript, helping to catch errors and enforce coding style guidelines. This extension provides inline linting feedback and can automatically fix certain issues.
-    "esbenp.prettier-vscode", // Integrates Prettier, an opinionated code formatter, into VS Code. It automatically formats code on save or can be run manually, ensuring consistent code formatting according to predefined style rules.
-    "github.vscode-github-actions" // Provides syntax highlighting and IntelliSense for GitHub Actions workflows. It also offers features like linting and validation, as well as the ability to run workflows locally.
   ]
 }

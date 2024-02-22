@@ -1,7 +1,0 @@
-{
-  "files": [],
-  "references": [
-    { "path": "ethereum_history_api/oracles/tsconfig.json" },
-    { "path": "ethereum_history_api/tests/tsconfig.json" }
-  ]
-}

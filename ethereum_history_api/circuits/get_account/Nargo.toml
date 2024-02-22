@@ -1,8 +1,0 @@
-[package]
-name = "get_account"
-type = "bin"
-authors = [""]
-compiler_version = ">=0.23.0"
-
-[dependencies]
-ethereum_history_api = { path = "../lib" }

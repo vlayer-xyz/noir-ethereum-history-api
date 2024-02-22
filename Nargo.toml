@@ -1,6 +1,5 @@
-[workspace]
-members = [
-  "ethereum_history_api/circuits/lib",
-  "ethereum_history_api/circuits/get_account"
-]
-default-member = "ethereum_history_api/circuits/lib"
+[package]
+name = "lib"
+type = "bin"
+compiler_version = "0.23.0"
+
