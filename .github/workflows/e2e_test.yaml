@@ -3,13 +3,12 @@ name: E2E Tests
 on: [push]
 
 jobs:
-  test:
-    name: E2E Tests
+  generate-proofs:
+    name: Generate proofs
     runs-on: 32-core-ubuntu-runner
     environment: CI
     env:
       ETHEREUM_JSON_RPC_API_URL: ${{ secrets.ETHEREUM_JSON_RPC_API_URL }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,9 +31,6 @@ jobs:
         with:
           toolchain: 0.23.0
 
-      - name: Compile Circuit
-        run: nargo compile --workspace
-
       - name: Start Oracle Server
         working-directory: ethereum_history_api/oracles
         run: |
@@ -47,7 +43,40 @@ jobs:
           nargo prove --package get_header --oracle-resolver=http://localhost:5555
           nargo prove --package get_account --oracle-resolver=http://localhost:5555
 
-      - name: Run nargo codegen-verifier
+      - name: Upload Proofs as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: proofs-artifact
+          path: |
+            proofs
+
+      - name: Stop Oracle Server
+        if: always()
+        run: kill $ORACLE_SERVER_PID
+
+  generate-solidity-verifiers:
+    name: Generate Solidity Verifiers
+    runs-on: 32-core-ubuntu-runner
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nargo
+        uses: noir-lang/noirup@v0.1.3
+        with:
+          toolchain: 0.23.0
+
+      - name: Nargo Compile
+        run: nargo compile --workspace
+
+      - name: Upload Compiled Circuitd as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: compiled-circuits
+          path: |
+            target
+
+      - name: Generate Solidity Verifiers
         run: |
           nargo codegen-verifier --package get_header
           nargo codegen-verifier --package get_account
@@ -61,6 +90,51 @@ jobs:
         working-directory: ethereum_history_api/contracts
         run: forge build
 
+      - name: Upload Solidity Verifiers as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: solidity-verifiers
+          path: |
+            contract
+            ethereum_history_api/contracts/out
+
+  test:
+    name: E2E Tests
+    needs: [generate-proofs, generate-solidity-verifiers]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+
+      - name: Enable Corepack and Install Yarn 4
+        run: |
+          corepack enable
+          yarn set version latest
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Download Compiled Circuits Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: compiled-circuits
+
+      - name: Download Solidity Verifiers Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: solidity-verifiers
+
+      - name: Download Proofs Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: proofs-artifact
+
       - name: Run TypeScript Build
         run: yarn build
 
@@ -71,7 +145,3 @@ jobs:
       - name: Run e2e Tests
         working-directory: ethereum_history_api/tests
         run: yarn test:e2e
-
-      - name: Stop Oracle Server
-        if: always()
-        run: kill $ORACLE_SERVER_PID
