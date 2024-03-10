@@ -1,0 +1,1 @@
+nargo prove --package get_storage --oracle-resolver=http://localhost:5555

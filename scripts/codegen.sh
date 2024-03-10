@@ -1,0 +1,1 @@
+nargo codegen-verifier --package get_storage
