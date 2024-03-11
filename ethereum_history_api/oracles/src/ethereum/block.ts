@@ -36,7 +36,9 @@ export function txToJsonRpcTx(tx: GetTransactionReturnType): JsonRpcTx {
     s: tx.s,
     type: txTypeToJsonRpcTxType(tx.type),
     accessList: tx.accessList,
-    chainId: toHexString(tx.chainId ?? 1)
+    chainId: toHexString(tx.chainId ?? 1),
+    maxFeePerGas: toHexString(tx.maxFeePerGas ?? 0n),
+    maxPriorityFeePerGas: toHexString(tx.maxPriorityFeePerGas ?? 0n)
   };
   return jsonRpcTx;
 }

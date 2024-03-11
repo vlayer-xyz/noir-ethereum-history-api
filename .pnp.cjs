@@ -423,6 +423,25 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@ethereumjs/blockchain", [\
+      ["npm:7.1.0", {\
+        "packageLocation": "../../../.yarn/berry/cache/@ethereumjs-blockchain-npm-7.1.0-8069bcd93b-10c0.zip/node_modules/@ethereumjs/blockchain/",\
+        "packageDependencies": [\
+          ["@ethereumjs/blockchain", "npm:7.1.0"],\
+          ["@ethereumjs/block", "npm:5.1.1"],\
+          ["@ethereumjs/common", "npm:4.2.0"],\
+          ["@ethereumjs/ethash", "npm:3.0.2"],\
+          ["@ethereumjs/rlp", "npm:5.0.2"],\
+          ["@ethereumjs/trie", "npm:6.1.1"],\
+          ["@ethereumjs/tx", "virtual:f1f9cf81b6b18c89a531f9aaa288465fb1aacbc6ced6d88e2334590b3677c14233898e0525f7afcd692c6792cb8d0b93a9c16b31e39dd5174c543c8a3ea03868#npm:5.2.1"],\
+          ["@ethereumjs/util", "virtual:3330f961fcb162dc83b71425fb52d9f930e1bd04a2386f5bfe921ffcb349b08568bcc3ac635286a20ec1680b41ddb32ea743b46b686a44426e086483180f680f#npm:9.0.2"],\
+          ["debug", "virtual:1ff4b5f90832ba0a9c93ba1223af226e44ba70c1126a3740d93562b97bc36544e896a5e95908196f7458713e6a6089a34bfc67362fc6df7fa093bd06c878be47#npm:4.3.4"],\
+          ["ethereum-cryptography", "npm:2.1.3"],\
+          ["lru-cache", "npm:10.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@ethereumjs/common", [\
       ["npm:4.2.0", {\
         "packageLocation": "../../../.yarn/berry/cache/@ethereumjs-common-npm-4.2.0-3330f961fc-10c0.zip/node_modules/@ethereumjs/common/",\
@@ -433,11 +452,60 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@ethereumjs/ethash", [\
+      ["npm:3.0.2", {\
+        "packageLocation": "../../../.yarn/berry/cache/@ethereumjs-ethash-npm-3.0.2-8cb3a9f952-10c0.zip/node_modules/@ethereumjs/ethash/",\
+        "packageDependencies": [\
+          ["@ethereumjs/ethash", "npm:3.0.2"],\
+          ["@ethereumjs/block", "npm:5.1.1"],\
+          ["@ethereumjs/rlp", "npm:5.0.2"],\
+          ["@ethereumjs/util", "virtual:3330f961fcb162dc83b71425fb52d9f930e1bd04a2386f5bfe921ffcb349b08568bcc3ac635286a20ec1680b41ddb32ea743b46b686a44426e086483180f680f#npm:9.0.2"],\
+          ["bigint-crypto-utils", "npm:3.3.0"],\
+          ["ethereum-cryptography", "npm:2.1.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@ethereumjs/evm", [\
+      ["npm:2.2.1", {\
+        "packageLocation": "../../../.yarn/berry/cache/@ethereumjs-evm-npm-2.2.1-97c03368ff-10c0.zip/node_modules/@ethereumjs/evm/",\
+        "packageDependencies": [\
+          ["@ethereumjs/evm", "npm:2.2.1"],\
+          ["@ethereumjs/common", "npm:4.2.0"],\
+          ["@ethereumjs/statemanager", "npm:2.2.2"],\
+          ["@ethereumjs/tx", "virtual:f1f9cf81b6b18c89a531f9aaa288465fb1aacbc6ced6d88e2334590b3677c14233898e0525f7afcd692c6792cb8d0b93a9c16b31e39dd5174c543c8a3ea03868#npm:5.2.1"],\
+          ["@ethereumjs/util", "virtual:3330f961fcb162dc83b71425fb52d9f930e1bd04a2386f5bfe921ffcb349b08568bcc3ac635286a20ec1680b41ddb32ea743b46b686a44426e086483180f680f#npm:9.0.2"],\
+          ["@types/debug", "npm:4.1.12"],\
+          ["debug", "virtual:1ff4b5f90832ba0a9c93ba1223af226e44ba70c1126a3740d93562b97bc36544e896a5e95908196f7458713e6a6089a34bfc67362fc6df7fa093bd06c878be47#npm:4.3.4"],\
+          ["ethereum-cryptography", "npm:2.1.3"],\
+          ["rustbn-wasm", "npm:0.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@ethereumjs/rlp", [\
       ["npm:5.0.2", {\
         "packageLocation": "../../../.yarn/berry/cache/@ethereumjs-rlp-npm-5.0.2-72fb389b37-10c0.zip/node_modules/@ethereumjs/rlp/",\
         "packageDependencies": [\
           ["@ethereumjs/rlp", "npm:5.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@ethereumjs/statemanager", [\
+      ["npm:2.2.2", {\
+        "packageLocation": "../../../.yarn/berry/cache/@ethereumjs-statemanager-npm-2.2.2-4d70babd17-10c0.zip/node_modules/@ethereumjs/statemanager/",\
+        "packageDependencies": [\
+          ["@ethereumjs/statemanager", "npm:2.2.2"],\
+          ["@ethereumjs/common", "npm:4.2.0"],\
+          ["@ethereumjs/rlp", "npm:5.0.2"],\
+          ["@ethereumjs/trie", "npm:6.1.1"],\
+          ["@ethereumjs/util", "virtual:3330f961fcb162dc83b71425fb52d9f930e1bd04a2386f5bfe921ffcb349b08568bcc3ac635286a20ec1680b41ddb32ea743b46b686a44426e086483180f680f#npm:9.0.2"],\
+          ["@ethereumjs/verkle", "npm:0.0.1"],\
+          ["debug", "virtual:1ff4b5f90832ba0a9c93ba1223af226e44ba70c1126a3740d93562b97bc36544e896a5e95908196f7458713e6a6089a34bfc67362fc6df7fa093bd06c878be47#npm:4.3.4"],\
+          ["ethereum-cryptography", "npm:2.1.3"],\
+          ["js-sdsl", "npm:4.4.2"],\
+          ["lru-cache", "npm:10.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -504,6 +572,39 @@ const RAW_RUNTIME_STATE =
         "packagePeers": [\
           "@types/c-kzg",\
           "c-kzg"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@ethereumjs/verkle", [\
+      ["npm:0.0.1", {\
+        "packageLocation": "../../../.yarn/berry/cache/@ethereumjs-verkle-npm-0.0.1-4018976228-10c0.zip/node_modules/@ethereumjs/verkle/",\
+        "packageDependencies": [\
+          ["@ethereumjs/verkle", "npm:0.0.1"],\
+          ["@ethereumjs/rlp", "npm:5.0.2"],\
+          ["@ethereumjs/util", "virtual:3330f961fcb162dc83b71425fb52d9f930e1bd04a2386f5bfe921ffcb349b08568bcc3ac635286a20ec1680b41ddb32ea743b46b686a44426e086483180f680f#npm:9.0.2"],\
+          ["lru-cache", "npm:10.2.0"],\
+          ["rust-verkle-wasm", "npm:0.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@ethereumjs/vm", [\
+      ["npm:7.2.1", {\
+        "packageLocation": "../../../.yarn/berry/cache/@ethereumjs-vm-npm-7.2.1-bf2b5e141f-10c0.zip/node_modules/@ethereumjs/vm/",\
+        "packageDependencies": [\
+          ["@ethereumjs/vm", "npm:7.2.1"],\
+          ["@ethereumjs/block", "npm:5.1.1"],\
+          ["@ethereumjs/blockchain", "npm:7.1.0"],\
+          ["@ethereumjs/common", "npm:4.2.0"],\
+          ["@ethereumjs/evm", "npm:2.2.1"],\
+          ["@ethereumjs/rlp", "npm:5.0.2"],\
+          ["@ethereumjs/statemanager", "npm:2.2.2"],\
+          ["@ethereumjs/trie", "npm:6.1.1"],\
+          ["@ethereumjs/tx", "virtual:f1f9cf81b6b18c89a531f9aaa288465fb1aacbc6ced6d88e2334590b3677c14233898e0525f7afcd692c6792cb8d0b93a9c16b31e39dd5174c543c8a3ea03868#npm:5.2.1"],\
+          ["@ethereumjs/util", "virtual:3330f961fcb162dc83b71425fb52d9f930e1bd04a2386f5bfe921ffcb349b08568bcc3ac635286a20ec1680b41ddb32ea743b46b686a44426e086483180f680f#npm:9.0.2"],\
+          ["debug", "virtual:1ff4b5f90832ba0a9c93ba1223af226e44ba70c1126a3740d93562b97bc36544e896a5e95908196f7458713e6a6089a34bfc67362fc6df7fa093bd06c878be47#npm:4.3.4"],\
+          ["ethereum-cryptography", "npm:2.1.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1018,6 +1119,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/debug", [\
+      ["npm:4.1.12", {\
+        "packageLocation": "../../../.yarn/berry/cache/@types-debug-npm-4.1.12-82a3fc4905-10c0.zip/node_modules/@types/debug/",\
+        "packageDependencies": [\
+          ["@types/debug", "npm:4.1.12"],\
+          ["@types/ms", "npm:0.7.34"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/estree", [\
       ["npm:1.0.5", {\
         "packageLocation": "../../../.yarn/berry/cache/@types-estree-npm-1.0.5-5b7faed3b4-10c0.zip/node_modules/@types/estree/",\
@@ -1078,6 +1189,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@types/lodash.isequal", "npm:4.5.8"],\
           ["@types/lodash", "npm:4.14.202"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/ms", [\
+      ["npm:0.7.34", {\
+        "packageLocation": "../../../.yarn/berry/cache/@types-ms-npm-0.7.34-46f5141bfd-10c0.zip/node_modules/@types/ms/",\
+        "packageDependencies": [\
+          ["@types/ms", "npm:0.7.34"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1844,6 +1964,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/base64-js-npm-1.5.1-b2f7275641-10c0.zip/node_modules/base64-js/",\
         "packageDependencies": [\
           ["base64-js", "npm:1.5.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["bigint-crypto-utils", [\
+      ["npm:3.3.0", {\
+        "packageLocation": "../../../.yarn/berry/cache/bigint-crypto-utils-npm-3.3.0-55f6d0399e-10c0.zip/node_modules/bigint-crypto-utils/",\
+        "packageDependencies": [\
+          ["bigint-crypto-utils", "npm:3.3.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4263,6 +4392,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["js-sdsl", [\
+      ["npm:4.4.2", {\
+        "packageLocation": "../../../.yarn/berry/cache/js-sdsl-npm-4.4.2-992f97f34c-10c0.zip/node_modules/js-sdsl/",\
+        "packageDependencies": [\
+          ["js-sdsl", "npm:4.4.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["js-tokens", [\
       ["npm:8.0.3", {\
         "packageLocation": "../../../.yarn/berry/cache/js-tokens-npm-8.0.3-d841c22eba-10c0.zip/node_modules/js-tokens/",\
@@ -4853,6 +4991,7 @@ const RAW_RUNTIME_STATE =
           ["@ethereumjs/trie", "npm:6.1.1"],\
           ["@ethereumjs/tx", "virtual:f1f9cf81b6b18c89a531f9aaa288465fb1aacbc6ced6d88e2334590b3677c14233898e0525f7afcd692c6792cb8d0b93a9c16b31e39dd5174c543c8a3ea03868#npm:5.2.1"],\
           ["@ethereumjs/util", "virtual:3330f961fcb162dc83b71425fb52d9f930e1bd04a2386f5bfe921ffcb349b08568bcc3ac635286a20ec1680b41ddb32ea743b46b686a44426e086483180f680f#npm:9.0.2"],\
+          ["@ethereumjs/vm", "npm:7.2.1"],\
           ["@noir-lang/noir_js", "npm:0.23.0"],\
           ["@types/json-bigint", "npm:1.0.4"],\
           ["@types/lodash.isequal", "npm:4.5.8"],\
@@ -5627,6 +5766,25 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["run-parallel", "npm:1.2.0"],\
           ["queue-microtask", "npm:1.2.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["rust-verkle-wasm", [\
+      ["npm:0.0.1", {\
+        "packageLocation": "../../../.yarn/berry/cache/rust-verkle-wasm-npm-0.0.1-26645757fa-10c0.zip/node_modules/rust-verkle-wasm/",\
+        "packageDependencies": [\
+          ["rust-verkle-wasm", "npm:0.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["rustbn-wasm", [\
+      ["npm:0.2.0", {\
+        "packageLocation": "../../../.yarn/berry/cache/rustbn-wasm-npm-0.2.0-572672eb6d-10c0.zip/node_modules/rustbn-wasm/",\
+        "packageDependencies": [\
+          ["rustbn-wasm", "npm:0.2.0"],\
+          ["@scure/base", "npm:1.1.5"]\
         ],\
         "linkType": "HARD"\
       }]\

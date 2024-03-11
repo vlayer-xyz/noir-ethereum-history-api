@@ -26,6 +26,7 @@
     "@ethereumjs/trie": "^6.1.1",
     "@ethereumjs/tx": "^5.2.1",
     "@ethereumjs/util": "^9.0.2",
+    "@ethereumjs/vm": "^7.2.1",
     "@noir-lang/noir_js": "0.23.0",
     "dotenv": "^16.3.1",
     "ethereumjs-util": "^7.1.5",
