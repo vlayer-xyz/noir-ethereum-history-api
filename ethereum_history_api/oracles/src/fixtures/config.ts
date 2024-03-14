@@ -46,7 +46,7 @@ export const FIXTURES: Fixtures = {
         blockNumber: 19_432_086n
       },
       some_blobGasUsed: {
-        blockNumber: 19_432_087n
+        blockNumber: 19_432_086n
       }
     }
   }
