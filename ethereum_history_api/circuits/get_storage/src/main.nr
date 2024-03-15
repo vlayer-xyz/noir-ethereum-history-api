@@ -5,5 +5,5 @@ fn main(
     address: pub Address,
     storage_key: pub Bytes32
 ) -> pub StorageWithinBlock<1> {
-    get_account_with_storage(block_number, address, storage_key)
+    get_account_with_storage(block_number, address, [storage_key])
 }

@@ -1,5 +1,5 @@
 use crate::misc::types::Bytes32;
-use crate::account_with_storage::{StorageProof, get_account_with_storage};
+use crate::account_with_storage::{StorageProof, get_account_with_storage, get_storage_keys};
 use crate::fixtures::mainnet::{
     paris::{
     usdc::{
@@ -25,8 +25,7 @@ fn test_get_account_with_storage_success() {
     let _ = OracleMock::mock("get_proof").returns((account, state_proof, proofs[0]));
 
     let address = state_proof.key;
-    let storage_key = proofs[0].key;
-    let account_with_storage = get_account_with_storage(number, address, storage_key);
+    let account_with_storage = get_account_with_storage(number, address, get_storage_keys(proofs));
 
     assert_eq(block_header_partial.hash, account_with_storage.block_hash);
 
@@ -44,8 +43,7 @@ fn test_get_account_with_storage_invalid_state_root() {
     let _ = OracleMock::mock("get_proof").returns((account, state_proof, proofs[0]));
 
     let address = state_proof.key;
-    let storage_key = proofs[0].key;
-    let _ = get_account_with_storage(number, address, storage_key);
+    let _ = get_account_with_storage(number, address, get_storage_keys(proofs));
 }
 
 #[test(should_fail)]
@@ -54,6 +52,5 @@ fn test_get_account_with_storage_invalid_storage_root() {
     let _ = OracleMock::mock("get_proof").returns((crypto_punks_account, crypto_punks_state_proof, proofs[0]));
 
     let address = state_proof.key;
-    let storage_key = proofs[0].key;
-    let _ = get_account_with_storage(number, address, storage_key);
+    let _ = get_account_with_storage(number, address, get_storage_keys(proofs));
 }

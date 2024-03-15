@@ -10,8 +10,8 @@ pub(crate) fn verify_storage_value(storage_root: Bytes32, proof: StorageProof) {
     assert(trie_proof.verify_storage_root(storage_root), "TrieProof: Invalid storage root");
 }
 
-pub(crate) fn verify_storage_values<N>(storage_root: Bytes32, proofs: [StorageProof; N]) {
-    for i in 0..N {
+pub(crate) fn verify_storage_values<STORAGE_LENGTH>(storage_root: Bytes32, proofs: [StorageProof; STORAGE_LENGTH]) {
+    for i in 0..STORAGE_LENGTH {
         verify_storage_value(storage_root, proofs[i]);
     }
 }
