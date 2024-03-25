@@ -16,8 +16,8 @@ struct Log<MAX_LOG_DATA_LEN> {
 }
 
 struct TxReceipt<LOG_NUM, MAX_LOG_DATA_LEN> {
-    status: u1,
-    state_root: Bytes32,
+    status: Option<u1>,
+    state_root: Option<Bytes32>,
     cumulative_gas_used: Field,
     logs_bloom: [u8; BLOOM_FILTER_LEN]
 }
