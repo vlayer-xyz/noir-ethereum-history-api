@@ -12,6 +12,7 @@ import { createReceiptProofFixture } from './noir_fixtures/receipt_proof.js';
 import { createStateProofFixture } from './noir_fixtures/state_proof.js';
 import { createStorageProofFixture } from './noir_fixtures/storage_proof.js';
 import { createTransactionFixture } from './noir_fixtures/transaction.js';
+import { createReceiptFixture } from './noir_fixtures/receipt.js';
 
 const INDEX_NOT_FOUND = -1;
 
@@ -56,9 +57,11 @@ for (const chain in FIXTURES) {
       if (transactionHash) {
         const txIdx = getTxIdx(block, transactionHash);
         const blockReceipts = await client.getTransactionReceipts({ blockNumber });
+        const receipt = blockReceipts[txIdx];
         const txReceiptProof = await getReceiptProof(block, blockReceipts, txIdx);
+        await writeFile(join(modulePath, 'receipt.nr'), createReceiptFixture(receipt));
         await writeFile(join(modulePath, 'receipt_proof.nr'), createReceiptProofFixture(txReceiptProof));
-        fixtureModules.push('receipt_proof');
+        fixtureModules.push('receipt_proof', 'receipt');
 
         const tx = await client.getTransaction({ hash: transactionHash });
         await writeFile(join(modulePath, 'transaction.nr'), createTransactionFixture(tx));
