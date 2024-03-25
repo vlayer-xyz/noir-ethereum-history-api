@@ -31,7 +31,7 @@ pub fn get_account_with_storage(block_number: Field, address: Address, storage_k
 ```
 
 ```rust
-pub fn get_receipt<...>(block_number: Field, tx_idx: Field, ...) -> TxReceiptWithinBlock<...>;
+pub fn get_receipt(block_number: Field, tx_idx: Field) -> TxReceiptWithinBlock;
 ```
 
 ### Without oracles
@@ -57,10 +57,10 @@ pub fn verify_storage_values<N>(storage_root: Bytes32, proofs: [StorageProof; N]
 ```
 
 ```rust
-pub fn verify_receipt<...>(
+pub fn verify_receipt(
     block_number: Field,
     tx_idx: Field,
-    receipt: TxReceipt<LOG_NUM, MAX_LOG_DATA_SIZE>,
+    receipt: TxReceipt,
     receipt_proof: TxReceiptProof,
     receipt_root: [u8; KEY_LENGTH]
 )
@@ -145,8 +145,8 @@ struct StorageWithinBlock<N> {
 ```
 
 ```rust
-struct TxReceiptWithinBlock<LOG_NUM, MAX_LOG_DATA_SIZE> {
-    receipt: TxReceipt<LOG_NUM, MAX_LOG_DATA_SIZE>,
+struct TxReceiptWithinBlock {
+    receipt: TxReceipt,
     block_hash: Bytes32
 }
 ```
