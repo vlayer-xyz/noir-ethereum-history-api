@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { decodeHexString, encodeHexString, encodeHexStringToArray, encodeOptional, joinArray } from './encode.js';
+import {
+  decodeHexString,
+  encodeHexString,
+  encodeHexStringToArray,
+  encodeOptional,
+  joinArray,
+  tabulateLine,
+  tabulateStructField
+} from './encode.js';
 
 describe('encodeHexStringToArray', () => {
   it('throws on invalid input', () => {
@@ -26,9 +34,27 @@ describe('encodeOptional', () => {
 describe('joinArray', () => {
   it('joins array', () => {
     const expectedFormattedArray = `[
-    0x12, 0x34
-  ]`;
+  0x12, 0x34
+]`;
     expect(joinArray(['0x12', '0x34'])).toBe(expectedFormattedArray);
+  });
+});
+
+describe('tabulateLine', () => {
+  it('tabulates line', () => {
+    expect(tabulateLine('line', 2)).toBe('    line');
+  });
+});
+
+describe('tabulateStructField', () => {
+  it('tabulates struct field', () => {
+    const value = '[\n  1\n]';
+    expect(tabulateStructField(value, 0)).toMatch(`[
+  1
+]`);
+    expect(tabulateStructField(value, 1)).toMatch(`[
+    1
+  ]`);
   });
 });
 

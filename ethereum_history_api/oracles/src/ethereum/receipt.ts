@@ -28,8 +28,12 @@ function isPreByzantium(receipt: TransactionReceipt): receipt is PreByzantiumRec
   return receipt.root !== undefined;
 }
 
-export function statusToHex(status: 'success' | 'reverted') {
-  return (status === 'reverted' ? '0x' : '0x01') as Hex;
+export function statusToHex(status: 'success' | 'reverted'): Hex {
+  return status === 'reverted' ? '0x' : '0x01';
+}
+
+export function statusToField(status: 'success' | 'reverted'): number {
+  return status === 'reverted' ? 0 : 1;
 }
 
 export function receiptToRlpFields(receipt: TransactionReceipt): RecursiveArray<Hex> {

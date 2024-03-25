@@ -2,6 +2,8 @@ import { Hex, isHex } from 'viem';
 import { BYTE_HEX_LEN } from '../../util/const.js';
 import { encodeByte } from '../oracles/common/encode.js';
 
+const TAB_AS_TWO_SPACES = '  ';
+
 // ENCODERS
 export function encodeHexString(value: string): Hex[] {
   return Array.from(encodeHexStringToArray(value)).map((byte) => encodeByte(byte));
@@ -28,8 +30,21 @@ export function encodeOptional(value: string | undefined | null): string {
 
 export function joinArray(value: string[]): string {
   return `[
-    ${value.join(', ')}
-  ]`;
+${TAB_AS_TWO_SPACES}${value.join(', ')}
+]`;
+}
+
+export function tabulateLine(line: string, depth: number): string {
+  return TAB_AS_TWO_SPACES.repeat(depth) + line;
+}
+
+export function tabulateStructField(value: string, depth: number): string {
+  const lines = value.split('\n');
+  return lines
+    .map((line, idx) => {
+      return idx === 0 ? line : tabulateLine(line, depth);
+    })
+    .join('\n');
 }
 
 // DECODERS

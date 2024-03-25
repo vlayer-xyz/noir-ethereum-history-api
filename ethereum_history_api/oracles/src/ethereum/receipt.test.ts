@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { encodeReceipt, logToRlpFields, receiptToRlpFields, statusToHex, txTypeToHex } from './receipt.js';
+import {
+  encodeReceipt,
+  logToRlpFields,
+  receiptToRlpFields,
+  statusToField,
+  statusToHex,
+  txTypeToHex
+} from './receipt.js';
 import { toEventSelector } from 'viem';
 import { assert } from '../util/assert.js';
 import { loadReceiptFixture } from '../fixtures.js';
@@ -32,6 +39,15 @@ describe('statusToHex', () => {
   });
   it(`reverted`, () => {
     expect(statusToHex('reverted')).toEqual('0x');
+  });
+});
+
+describe('statusToField', () => {
+  it(`success`, () => {
+    expect(statusToField('success')).toEqual(1);
+  });
+  it(`reverted`, () => {
+    expect(statusToField('reverted')).toEqual(0);
   });
 });
 
