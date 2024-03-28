@@ -12,7 +12,7 @@ export function createReceiptProofFixture(proof: Proof): string {
     MAX_RECEIPT_KEY_NIBBLE_LEN,
     MAX_RECEIPT_RLP_LEN,
     MAX_RECEIPT_PROOF_LEN,
-    'crate::receipt::TxReceiptProof',
-    'TxReceiptProof'
+    'dep::proof::trie_proof::TrieProof',
+    'TrieProof'
   );
 }

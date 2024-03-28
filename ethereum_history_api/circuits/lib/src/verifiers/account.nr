@@ -17,50 +17,50 @@ global CODE_HASH_INDEX = 3;
 
 pub(crate) fn assert_account_equals(account_rlp_left_padded: [u8; MAX_ACCOUNT_STATE_LENGTH], account: Account) {
     let account_rlp_right_padded = byte_value(account_rlp_left_padded).0;
-    let account_rlp: RLP_List<ACCOUNT_FIELDS_COUNT> = decode1_small_lis(account_rlp_right_padded);
-    assert(account_rlp.num_fields == ACCOUNT_FIELDS_COUNT, "Invalid number of fields in account RLP");
+    let decoded_account: RLP_List<ACCOUNT_FIELDS_COUNT> = decode1_small_lis(account_rlp_right_padded);
+    assert(decoded_account.num_fields == ACCOUNT_FIELDS_COUNT, "Invalid number of fields in account RLP");
 
     let nonce = u64_to_u8(account.nonce as u64);
     let (nonce, nonce_length) = byte_value(nonce);
     let balance = U128::from_integer(account.balance).to_be_bytes();
     let (balance, balance_length) = byte_value(balance);
 
-    assert(account_rlp.length[NONCE_INDEX] == nonce_length, "Nonce length mismatch");
+    assert(decoded_account.length[NONCE_INDEX] == nonce_length, "Nonce length mismatch");
     assert(
         sub_array_equals_up_to_length(
             nonce,
             account_rlp_right_padded,
-            account_rlp.offset[NONCE_INDEX],
+            decoded_account.offset[NONCE_INDEX],
             nonce_length as u64
         ), "Nonce mismatch"
     );
 
-    assert(account_rlp.length[BALANCE_INDEX] == balance_length, "Balance length mismatch");
+    assert(decoded_account.length[BALANCE_INDEX] == balance_length, "Balance length mismatch");
     assert(
         sub_array_equals_up_to_length(
             balance,
             account_rlp_right_padded,
-            account_rlp.offset[BALANCE_INDEX],
+            decoded_account.offset[BALANCE_INDEX],
             balance_length as u64
         ), "Balance mismatch"
     );
 
-    assert(account_rlp.length[STORAGE_ROOT_INDEX] == HASH_LEN, "Storage root length mismatch");
+    assert(decoded_account.length[STORAGE_ROOT_INDEX] == HASH_LEN, "Storage root length mismatch");
     assert(
         sub_array_equals_up_to_length(
             account.storage_root,
             account_rlp_right_padded,
-            account_rlp.offset[STORAGE_ROOT_INDEX],
+            decoded_account.offset[STORAGE_ROOT_INDEX],
             HASH_LEN as u64
         ), "Storage root mismatch"
     );
 
-    assert(account_rlp.length[CODE_HASH_INDEX] == HASH_LEN, "Code hash length mismatch");
+    assert(decoded_account.length[CODE_HASH_INDEX] == HASH_LEN, "Code hash length mismatch");
     assert(
         sub_array_equals_up_to_length(
             account.code_hash,
             account_rlp_right_padded,
-            account_rlp.offset[CODE_HASH_INDEX],
+            decoded_account.offset[CODE_HASH_INDEX],
             HASH_LEN as u64
         ), "Code hash mismatch"
     );

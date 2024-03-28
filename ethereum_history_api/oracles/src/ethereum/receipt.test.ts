@@ -5,6 +5,7 @@ import {
   receiptToRlpFields,
   statusToField,
   statusToHex,
+  txTypeToField,
   txTypeToHex
 } from './receipt.js';
 import { toEventSelector } from 'viem';
@@ -37,6 +38,7 @@ describe('statusToHex', () => {
   it(`success`, () => {
     expect(statusToHex('success')).toEqual('0x01');
   });
+
   it(`reverted`, () => {
     expect(statusToHex('reverted')).toEqual('0x');
   });
@@ -46,6 +48,7 @@ describe('statusToField', () => {
   it(`success`, () => {
     expect(statusToField('success')).toEqual(1);
   });
+
   it(`reverted`, () => {
     expect(statusToField('reverted')).toEqual(0);
   });
@@ -70,6 +73,16 @@ describe('txTypeToHex', () => {
 
   it(`unknown`, () => {
     expect(() => txTypeToHex('unknown')).toThrowError(`Unknown transaction type: unknown`);
+  });
+});
+
+describe('txTypeToField', () => {
+  it('legacy', () => {
+    expect(txTypeToField('legacy')).toEqual(0);
+  });
+
+  it('unknown', () => {
+    expect(() => txTypeToField('unknown')).toThrowError(`Unknown transaction type: unknown`);
   });
 });
 

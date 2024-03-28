@@ -1,27 +1,25 @@
-import { Hash, Hex, Log, TransactionType, concatHex, toRlp } from 'viem';
 import { toHexString } from './blockHeader.js';
 import { TransactionReceipt } from '../types.js';
+import { Hash, Hex, Log, TransactionType, concatHex, toRlp, rpcTransactionType } from 'viem';
 import { assert } from '../util/assert.js';
+import { padHexToEven } from '../util/hex.js';
 
 export type RecursiveArray<T> = T | RecursiveArray<T>[];
+type ValueOf<T> = T[keyof T];
+type TxTypeHex = ValueOf<typeof rpcTransactionType>;
 
 export function logToRlpFields(log: Log): RecursiveArray<Hex> {
   return [log.address, log.topics, log.data];
 }
 
-export function txTypeToHex(type: TransactionType): Hex {
-  switch (type) {
-    case 'legacy':
-      return '0x00';
-    case 'eip2930':
-      return '0x01';
-    case 'eip1559':
-      return '0x02';
-    case 'eip4844':
-      return '0x03';
-    default:
-      throw new Error(`Unknown transaction type: ${type}`);
-  }
+export function txTypeToHex(type: TransactionType): TxTypeHex {
+  assert(type in rpcTransactionType, `Unknown transaction type: ${type}`);
+  return padHexToEven(rpcTransactionType[type as keyof typeof rpcTransactionType]) as TxTypeHex;
+}
+
+export function txTypeToField(type: TransactionType): number {
+  const hexTxType = txTypeToHex(type);
+  return parseInt(hexTxType, 16);
 }
 
 type PreByzantiumReceipt = TransactionReceipt & { root: Hash };

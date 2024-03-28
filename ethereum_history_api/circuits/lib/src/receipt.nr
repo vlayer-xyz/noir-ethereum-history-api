@@ -2,11 +2,12 @@ use crate::misc::{types::{Bytes32, Address}, option::make_option};
 use crate::header::get_header;
 use crate::verifiers::receipt::verify_receipt;
 use dep::std::unsafe::zeroed;
-use dep::proof::const::MAX_TRIE_NODE_LENGTH;
+use dep::proof::{const::MAX_TRIE_NODE_LENGTH, receipt_proof::ReceiptProof};
 
 global BLOOM_FILTER_LEN = 256;
 global MAX_RECEIPT_KEY_LEN = 3;
 global MAX_RECEIPT_TREE_DEPTH = 7;
+global MAX_RECEIPT_ENCODED_LEN = 525;
 global MAX_RECEIPT_PROOF_LEN = 3724; // = MAX_RECEIPT_TREE_DEPTH * MAX_TRIE_NODE_LENGTH
 
 struct Log<MAX_LOG_DATA_LEN> {
@@ -33,17 +34,12 @@ struct ForeignCallTxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN> {
     logs_bloom: [u8; BLOOM_FILTER_LEN]
 }
 
-struct TxReceiptProof {
-    key: [u8; MAX_RECEIPT_KEY_LEN],
-    value: [u8; MAX_TRIE_NODE_LENGTH],
-    proof: [u8; MAX_RECEIPT_PROOF_LEN],
-    depth: u64
-}
-
 struct TxReceiptWithinBlock<LOG_NUM, MAX_LOG_DATA_LEN> {
     receipt: TxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN>,
     block_hash: Bytes32
 }
+
+type TxReceiptProof = ReceiptProof<MAX_RECEIPT_PROOF_LEN, MAX_RECEIPT_ENCODED_LEN>;
 
 pub fn get_receipt<LOG_NUM, MAX_LOG_DATA_LEN>(
     block_number: Field,
@@ -57,12 +53,12 @@ pub fn get_receipt<LOG_NUM, MAX_LOG_DATA_LEN>(
 unconstrained fn get_receipt_oracle<LOG_NUM, MAX_LOG_DATA_LEN>(
     _block_number: Field,
     _tx_idx: Field
-) -> (TxType, ForeignCallTxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN>, TxReceiptProof) {}
+) -> (TxType, ForeignCallTxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN>, ReceiptProof<MAX_RECEIPT_PROOF_LEN, MAX_RECEIPT_ENCODED_LEN>) {}
 
 unconstrained fn get_receipt_unconstrained<LOG_NUM, MAX_LOG_DATA_LEN>(
     block_number: Field,
     tx_idx: Field
-) -> (TxType, TxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN>, TxReceiptProof) {
+) -> (TxType, TxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN>, ReceiptProof<MAX_RECEIPT_PROOF_LEN, MAX_RECEIPT_ENCODED_LEN>) {
     let (tx_type, receipt, proof) = get_receipt_oracle(block_number, tx_idx);
 
     let receipt = TxReceiptPartial {

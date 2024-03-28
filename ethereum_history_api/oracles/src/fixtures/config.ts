@@ -4,6 +4,7 @@ export const JS_FIXTURES_DIRECTORY = 'fixtures';
 export const CIRCLE_USDC_BALANCE_STORAGE_KEY = '0x57d18af793d7300c4ba46d192ec7aa095070dde6c52c687c6d0d92fb8532b305';
 export const UNISWAP_V3_USDC_BALANCE_STORAGE_KEY = '0x1f21a62c4538bacf2aabeca410f0fe63151869f172e03c0e00357ba26a341eff';
 export const CHAIN_LINK_TRANSFER_TX_HASH = '0x98e19df80eb8feae436896cc7cc6d4a97818e6010b56a249352b9ac2caf0d573';
+export const ORACLIZE_TRANSFER_TX_HASH = '0x38f299591902bfada359527fa6b9b597a959c41c6f72a3b484807fbf52dc8abe';
 
 interface Fixture {
   blockNumber: bigint;
@@ -28,7 +29,8 @@ export const FIXTURES: Fixtures = {
     },
     homestead: {
       fork: {
-        blockNumber: 1_150_000n
+        blockNumber: 1_150_000n,
+        transactionHash: ORACLIZE_TRANSFER_TX_HASH
       }
     },
     london: {
