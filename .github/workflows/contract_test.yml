@@ -32,6 +32,7 @@ jobs:
           nargo codegen-verifier --package get_storage
           nargo codegen-verifier --package get_account
           nargo codegen-verifier --package get_header
+          nargo codegen-verifier --package get_receipt
 
       - name: Run Forge build
         run: |
