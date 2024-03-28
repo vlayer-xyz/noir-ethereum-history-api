@@ -5,8 +5,9 @@ import { padArray } from '../../util/array.js';
 import { ZERO_PAD_VALUE } from '../../noir/oracles/common/const.js';
 import { MAX_ENCODED_RECEIPT_LENGTH } from '../../noir/oracles/receiptOracle/encode.js';
 import { TransactionReceipt } from '../../types.js';
-import { MAX_RECEIPT_RLP_LEN } from '../../noir/oracles/accountOracle/encode.js';
 import { toRlp } from 'viem';
+
+const MAX_RECEIPT_RLP_LEN = MAX_ENCODED_RECEIPT_LENGTH - 1;
 
 export function createReceiptFixture(receipt: TransactionReceipt): string {
   const receipt_rlp = joinArray(
