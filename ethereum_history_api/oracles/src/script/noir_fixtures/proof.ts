@@ -16,7 +16,7 @@ export function createProofFixture(
 ): string {
   const paddedKey = padHex(proof.key, { size: maxTreeDepth / BYTE_HEX_LEN, dir: 'left' });
   const key = encodeHex(paddedKey);
-  const value = padArray(encodeHexString(proof.value), maxRlpLen, ZERO_PAD_VALUE);
+  const value = padArray(encodeHexString(proof.value), maxRlpLen, ZERO_PAD_VALUE, 'left');
   const encodedProof = encodeProof(proof.proof, maxProofLen);
   const depth = proof.proof.length;
   return `use ${crateImport};

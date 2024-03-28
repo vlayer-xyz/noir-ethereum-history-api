@@ -33,9 +33,9 @@ struct ForeignCallTxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN> {
     logs_bloom: [u8; BLOOM_FILTER_LEN]
 }
 
-struct TxReceiptProof {
+struct TxReceiptProof<MAX_RLP_LEN> {
     key: [u8; MAX_RECEIPT_KEY_LEN],
-    value: [u8; MAX_TRIE_NODE_LENGTH],
+    value: [u8; MAX_RLP_LEN],
     proof: [u8; MAX_RECEIPT_PROOF_LEN],
     depth: u64
 }
@@ -45,24 +45,24 @@ struct TxReceiptWithinBlock<LOG_NUM, MAX_LOG_DATA_LEN> {
     block_hash: Bytes32
 }
 
-pub fn get_receipt<LOG_NUM, MAX_LOG_DATA_LEN>(
+pub fn get_receipt<LOG_NUM, MAX_LOG_DATA_LEN, MAX_RECEIPT_RLP_LEN>(
     block_number: Field,
     tx_idx: Field
 ) -> TxReceiptWithinBlock<LOG_NUM, MAX_LOG_DATA_LEN> {
-    let (tx_type, receipt, proof): (TxType, TxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN>, TxReceiptProof) = get_receipt_unconstrained(block_number, tx_idx);
+    let (tx_type, receipt, proof): (TxType, TxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN>, TxReceiptProof<MAX_RECEIPT_RLP_LEN>) = get_receipt_unconstrained(block_number, tx_idx);
     zeroed()
 }
 
 #[oracle(get_receipt)]
-unconstrained fn get_receipt_oracle<LOG_NUM, MAX_LOG_DATA_LEN>(
+unconstrained fn get_receipt_oracle<LOG_NUM, MAX_LOG_DATA_LEN, MAX_RECEIPT_RLP_LEN>(
     _block_number: Field,
     _tx_idx: Field
-) -> (TxType, ForeignCallTxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN>, TxReceiptProof) {}
+) -> (TxType, ForeignCallTxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN>, TxReceiptProof<MAX_RECEIPT_RLP_LEN>) {}
 
-unconstrained fn get_receipt_unconstrained<LOG_NUM, MAX_LOG_DATA_LEN>(
+unconstrained fn get_receipt_unconstrained<LOG_NUM, MAX_LOG_DATA_LEN, MAX_RECEIPT_RLP_LEN>(
     block_number: Field,
     tx_idx: Field
-) -> (TxType, TxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN>, TxReceiptProof) {
+) -> (TxType, TxReceiptPartial<LOG_NUM, MAX_LOG_DATA_LEN>, TxReceiptProof<MAX_RECEIPT_RLP_LEN>) {
     let (tx_type, receipt, proof) = get_receipt_oracle(block_number, tx_idx);
 
     let receipt = TxReceiptPartial {
